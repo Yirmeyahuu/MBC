@@ -16,11 +16,10 @@ interface Message {
 interface ChatConversationProps {
   agentName: string;
   agentAvatar: string;
-  agentEmail: string;
   onBack: () => void;
 }
 
-export function ChatConversation({ agentName, agentAvatar, agentEmail, onBack }: ChatConversationProps) {
+export function ChatConversation({ agentName, agentAvatar, onBack }: ChatConversationProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,

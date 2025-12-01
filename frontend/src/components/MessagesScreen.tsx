@@ -54,7 +54,7 @@ interface MessagesScreenProps {
   onConversationClick?: (conversation: Conversation) => void;
 }
 
-export function MessagesScreen({ selectedAgentEmail, onConversationClick }: MessagesScreenProps) {
+export function MessagesScreen({ onConversationClick }: MessagesScreenProps) {
   // If an agent email is provided, find and auto-open that conversation
   const handleConversationClick = (convo: Conversation) => {
     if (onConversationClick) {
