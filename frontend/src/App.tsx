@@ -195,7 +195,6 @@ export default function App() {
           <ChatConversation
             agentName={activeChat.name}
             agentAvatar={activeChat.avatar}
-            agentEmail={activeChat.email}
             onBack={handleBackFromChat}
           />
         )}
