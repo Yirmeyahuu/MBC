@@ -1,4 +1,3 @@
-import React from 'react';
 import { Home, Search, MessageCircle, User } from 'lucide-react';
 
 interface BottomNavProps {

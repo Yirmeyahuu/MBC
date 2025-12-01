@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { LoginScreen } from './components/LoginScreen';
 import { RegisterScreen } from './components/RegisterScreen';
 import { ClientHome } from './components/ClientHome';
@@ -10,7 +10,7 @@ import {ReservationModal} from './components/ReservationModal';
 import { toast, Toaster } from 'sonner';
 import { SearchScreen } from './components/SearchScreen';
 import { MessagesScreen } from './components/MessagesScreen';
-import { ProfileScreen } from './components/ProfileScreen';ProfileScreen
+import { ProfileScreen } from './components/ProfileScreen';
 
 type Screen = 
   | 'login'

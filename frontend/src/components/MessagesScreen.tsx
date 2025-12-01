@@ -1,5 +1,3 @@
-import React from 'react';
-
 const conversations = [
   { name: 'Agent John Doe', message: 'Yes, the unit is still available for viewing.', time: '10:42 AM', unread: 2, avatar: 'https://i.pravatar.cc/150?img=68' },
   { name: 'Property Inquiries', message: 'You have a new inquiry about the Suburban Home.', time: '9:15 AM', unread: 0, avatar: 'https://i.pravatar.cc/150?img=60' },

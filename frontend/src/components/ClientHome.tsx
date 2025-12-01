@@ -1,4 +1,3 @@
-import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Bell, Search, MapPin, Bed, Bath, Maximize } from 'lucide-react';
 import { Input } from './ui/input';

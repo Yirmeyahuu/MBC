@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowLeft, MapPin, Bed, Bath, Maximize, Wifi, Dumbbell, Car, Shield, Wind, Zap, Phone } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';

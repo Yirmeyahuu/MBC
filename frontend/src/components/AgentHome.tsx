@@ -8,7 +8,6 @@ import {
   MessageSquare,
   User,
   Plus,
-  TrendingUp,
   Eye,
   Edit,
   MapPin,

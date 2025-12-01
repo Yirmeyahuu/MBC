@@ -1,4 +1,3 @@
-import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Plus, TrendingUp, Home, Users, Calendar, MapPin, Edit, Trash2, Eye } from 'lucide-react';
 import { Button } from './ui/button';
@@ -171,7 +170,10 @@ export function AgentDashboard({ onPropertyClick }: AgentDashboardProps) {
                   <Edit className="w-4 h-4" />
                   Edit
                 </button>
-                <button className="flex-1 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-1 border-l border-gray-200">
+                <button
+                  onClick={() => onPropertyClick?.(listing.id)}
+                  className="flex-1 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-1 border-l border-gray-200"
+                >
                   <Eye className="w-4 h-4" />
                   View
                 </button>
