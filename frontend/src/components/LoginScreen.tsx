@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { Building2 } from 'lucide-react';
 
 interface LoginScreenProps {
   onLogin: (userType: 'client' | 'agent') => void;
@@ -24,9 +23,11 @@ export function LoginScreen({ onLogin, onSwitchToRegister }: LoginScreenProps) {
       {/* Header */}
       <div className="pt-16 pb-8 px-6 text-center">
         <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 rounded-2xl bg-[#0056D2] flex items-center justify-center">
-            <Building2 className="w-8 h-8 text-white" />
-          </div>
+          <img 
+            src="/MBCLOGONOBG.png" 
+            alt="Metro Bacolod Connect Logo" 
+            className="w-24 h-24 object-contain"
+          />
         </div>
         <h1 className="text-[#0056D2] mb-2">Metro Bacolod Connect</h1>
         <p className="text-gray-600">Your Professional Real Estate Platform</p>
