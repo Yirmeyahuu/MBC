@@ -2,95 +2,18 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Bell, Search, MapPin, Bed, Bath, Maximize } from 'lucide-react';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
-
-interface Property {
-  id: number;
-  title: string;
-  price: string;
-  location: string;
-  image: string;
-  beds: number;
-  baths: number;
-  sqft: string;
-  status: 'Available' | 'Reserved' | 'Sold';
-}
+import { allProperties } from '../data/propertyData';
 
 interface ClientHomeProps {
   onPropertyClick: (propertyId: number) => void;
 }
 
 export function ClientHome({ onPropertyClick }: ClientHomeProps) {
-  const featuredProperties: Property[] = [
-    {
-      id: 1,
-      title: 'Modern Luxury Penthouse',
-      price: '₱12,500,000',
-      location: 'Bacolod City Center',
-      image: 'https://images.unsplash.com/photo-1758448756350-3d0eec02ba37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwZW50aG91c2UlMjBsaXZpbmclMjByb29tfGVufDF8fHx8MTc2NDU3MTY3OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      beds: 3,
-      baths: 2,
-      sqft: '120',
-      status: 'Available'
-    },
-    {
-      id: 2,
-      title: 'Premium Hotel Suite',
-      price: '₱8,750,000',
-      location: 'Lacson Street',
-      image: 'https://images.unsplash.com/photo-1695706807850-8c66b24b3413?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3RlbCUyMGxvYmJ5JTIwaW50ZXJpb3J8ZW58MXx8fHwxNzY0NTcwODA4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      beds: 2,
-      baths: 2,
-      sqft: '85',
-      status: 'Available'
-    },
-    {
-      id: 3,
-      title: 'Luxury Condo Unit',
-      price: '₱6,200,000',
-      location: 'The District North',
-      image: 'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjb25kbyUyMGJlZHJvb218ZW58MXx8fHwxNzY0NTc3NTc0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      beds: 2,
-      baths: 1,
-      sqft: '68',
-      status: 'Available'
-    }
-  ];
-
-  const recentListings: Property[] = [
-    {
-      id: 4,
-      title: 'Modern Apartment with Pool',
-      price: '₱5,500,000',
-      location: 'Mandalagan',
-      image: 'https://images.unsplash.com/photo-1534612899740-55c821a90129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHN3aW1taW5nJTIwcG9vbHxlbnwxfHx8fDE3NjQ1Nzc1NzR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      beds: 2,
-      baths: 2,
-      sqft: '75',
-      status: 'Available'
-    },
-    {
-      id: 5,
-      title: 'Contemporary High-Rise Unit',
-      price: '₱9,800,000',
-      location: 'Downtown Bacolod',
-      image: 'https://images.unsplash.com/photo-1667238324671-c2fe726f6084?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcGFydG1lbnQlMjBidWlsZGluZyUyMGV4dGVyaW9yfGVufDF8fHx8MTc2NDU2MzQyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      beds: 3,
-      baths: 2,
-      sqft: '95',
-      status: 'Available'
-    },
-    {
-      id: 6,
-      title: 'Designer Kitchen Condo',
-      price: '₱7,300,000',
-      location: 'Villamonte',
-      image: 'https://images.unsplash.com/photo-1610177534644-34d881503b83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVuJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzY0NTQ4ODMyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      beds: 2,
-      baths: 2,
-      sqft: '80',
-      status: 'Available'
-    }
-  ];
+  // Get featured properties (first 3)
+  const featuredProperties = allProperties.slice(0, 3);
+  
+  // Get recent listings (last 3)
+  const recentListings = allProperties.slice(3, 6);
 
   return (
     <div className="min-h-screen bg-white pb-24">

@@ -108,12 +108,12 @@ export default function AgentHome({ onLogout }: AgentHomeProps) {
       <div className="bg-primary px-6 pt-12 pb-6 text-white">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-white/80">Agent Dashboard</h3>
-            <h2 className="text-white">Good Morning, Agent!</h2>
+            <h3 className="text-white/80 text-sm">Agent Dashboard</h3>
+            <h2 className="text-white text-xl font-semibold">Good Morning, Agent!</h2>
           </div>
           <button
             onClick={onLogout}
-            className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
+            className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
           >
             <User className="w-5 h-5 text-white" />
           </button>
@@ -123,15 +123,15 @@ export default function AgentHome({ onLogout }: AgentHomeProps) {
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
             <p className="text-white/70 text-xs mb-1">Active</p>
-            <p className="text-white">12</p>
+            <p className="text-white text-lg font-semibold">12</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
             <p className="text-white/70 text-xs mb-1">Leads</p>
-            <p className="text-white">24</p>
+            <p className="text-white text-lg font-semibold">24</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
             <p className="text-white/70 text-xs mb-1">Sold</p>
-            <p className="text-white">8</p>
+            <p className="text-white text-lg font-semibold">8</p>
           </div>
         </div>
       </div>
@@ -142,15 +142,15 @@ export default function AgentHome({ onLogout }: AgentHomeProps) {
         <div className="px-6 py-6 bg-white border-b">
           <Button className="w-full h-12 bg-primary hover:bg-primary/90">
             <Plus className="w-5 h-5 mr-2" />
-            Add New Listing
+            Quick Actions
           </Button>
         </div>
 
         {/* My Listings */}
         <div className="px-6 py-6 bg-white mb-4">
           <div className="flex items-center justify-between mb-4">
-            <h3>My Listings</h3>
-            <button className="text-primary text-sm">View All</button>
+            <h3 className="font-semibold">My Listings</h3>
+            <button className="text-primary text-sm hover:underline">View All</button>
           </div>
 
           <div className="space-y-4">
@@ -180,8 +180,8 @@ export default function AgentHome({ onLogout }: AgentHomeProps) {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h4 className="truncate mb-1">{listing.title}</h4>
-                    <p className="text-primary mb-1">{listing.price}</p>
+                    <h4 className="truncate mb-1 font-medium">{listing.title}</h4>
+                    <p className="text-primary mb-1 font-semibold">{listing.price}</p>
                     <div className="flex items-center gap-1 text-gray-600 mb-2">
                       <MapPin className="w-3 h-3" />
                       <span className="text-xs truncate">
@@ -201,7 +201,7 @@ export default function AgentHome({ onLogout }: AgentHomeProps) {
                     </div>
                   </div>
 
-                  <button className="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <button className="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
                     <Edit className="w-4 h-4 text-primary" />
                   </button>
                 </div>
@@ -213,8 +213,8 @@ export default function AgentHome({ onLogout }: AgentHomeProps) {
         {/* Recent Leads */}
         <div className="px-6 py-6 bg-white">
           <div className="flex items-center justify-between mb-4">
-            <h3>Recent Leads</h3>
-            <button className="text-primary text-sm">View All</button>
+            <h3 className="font-semibold">Recent Leads</h3>
+            <button className="text-primary text-sm hover:underline">View All</button>
           </div>
 
           <div className="space-y-3">
@@ -231,7 +231,7 @@ export default function AgentHome({ onLogout }: AgentHomeProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="truncate">{lead.name}</h4>
+                      <h4 className="truncate font-medium">{lead.name}</h4>
                       {lead.unread && (
                         <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 ml-2" />
                       )}

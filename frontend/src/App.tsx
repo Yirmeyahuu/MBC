@@ -6,10 +6,11 @@ import { PropertyDetails } from './components/PropertyDetails';
 import { AgentDashboard } from './components/AgentDashboard';
 import { BottomNav } from './components/BottomNav';
 import { MeetingModal } from './components/MeetingModal';
-import {ReservationModal} from './components/ReservationModal';
+import { ReservationModal } from './components/ReservationModal';
 import { toast, Toaster } from 'sonner';
 import { SearchScreen } from './components/SearchScreen';
 import { MessagesScreen } from './components/MessagesScreen';
+import { ChatConversation } from './components/ChatConversation';
 import { ProfileScreen } from './components/ProfileScreen';
 
 type Screen = 
@@ -20,9 +21,16 @@ type Screen =
   | 'agent-dashboard'
   | 'search'
   | 'messages'
+  | 'chat-conversation'
   | 'profile';
 
 type UserType = 'client' | 'agent' | null;
+
+interface ActiveChat {
+  name: string;
+  avatar: string;
+  email: string;
+}
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
@@ -31,6 +39,9 @@ export default function App() {
   const [selectedPropertyId, setSelectedPropertyId] = useState<number | null>(null);
   const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
+  const [selectedAgentEmail, setSelectedAgentEmail] = useState<string | null>(null);
+  const [activeChat, setActiveChat] = useState<ActiveChat | null>(null);
+  const [previousScreen, setPreviousScreen] = useState<Screen>('client-home');
 
   // Handle login
   const handleLogin = (type: 'client' | 'agent') => {
@@ -56,17 +67,14 @@ export default function App() {
 
   // Handle property click
   const handlePropertyClick = (propertyId: number) => {
+    setPreviousScreen(currentScreen);
     setSelectedPropertyId(propertyId);
     setCurrentScreen('property-details');
   };
 
   // Handle back from property details
   const handleBackFromProperty = () => {
-    if (userType === 'client') {
-      setCurrentScreen('client-home');
-    } else {
-      setCurrentScreen('agent-dashboard');
-    }
+    setCurrentScreen(previousScreen);
   };
 
   // Handle inquire
@@ -82,6 +90,35 @@ export default function App() {
   // Handle meeting confirmation
   const handleMeetingConfirm = (date: Date, time: string) => {
     toast.success(`Meeting scheduled for ${date.toLocaleDateString()} at ${time}`);
+  };
+
+  // Handle message agent
+  const handleMessageAgent = (agentEmail: string, agentName: string) => {
+    setSelectedAgentEmail(agentEmail);
+    // Create a mock active chat for the agent
+    setActiveChat({
+      name: agentName,
+      avatar: 'https://i.pravatar.cc/150?img=68', // You can match this with actual agent data
+      email: agentEmail
+    });
+    setCurrentScreen('chat-conversation');
+    toast.success(`Opening chat with ${agentName}`);
+  };
+
+  // Handle conversation click from messages screen
+  const handleConversationClick = (conversation: { id: string; name: string; avatar: string; email: string }) => {
+    setActiveChat({
+      name: conversation.name,
+      avatar: conversation.avatar,
+      email: conversation.email
+    });
+    setCurrentScreen('chat-conversation');
+  };
+
+  // Handle back from chat
+  const handleBackFromChat = () => {
+    setCurrentScreen('messages');
+    setActiveTab('messages');
   };
 
   // Handle bottom nav tab change
@@ -103,7 +140,8 @@ export default function App() {
   const showBottomNav = 
     currentScreen !== 'login' && 
     currentScreen !== 'register' && 
-    currentScreen !== 'property-details';
+    currentScreen !== 'property-details' &&
+    currentScreen !== 'chat-conversation';
 
   return (
     <div className="min-h-screen bg-white">
@@ -134,6 +172,7 @@ export default function App() {
             onBack={handleBackFromProperty}
             onInquire={handleInquire}
             onReserve={handleReserve}
+            onMessageAgent={handleMessageAgent}
           />
         )}
 
@@ -141,8 +180,26 @@ export default function App() {
           <AgentDashboard onPropertyClick={handlePropertyClick} />
         )}
 
-        {currentScreen === 'search' && <SearchScreen />}
-        {currentScreen === 'messages' && <MessagesScreen />}
+        {currentScreen === 'search' && (
+          <SearchScreen onPropertyClick={handlePropertyClick} />
+        )}
+        
+        {currentScreen === 'messages' && (
+          <MessagesScreen 
+            selectedAgentEmail={selectedAgentEmail}
+            onConversationClick={handleConversationClick}
+          />
+        )}
+
+        {currentScreen === 'chat-conversation' && activeChat && (
+          <ChatConversation
+            agentName={activeChat.name}
+            agentAvatar={activeChat.avatar}
+            agentEmail={activeChat.email}
+            onBack={handleBackFromChat}
+          />
+        )}
+
         {currentScreen === 'profile' && <ProfileScreen />}
 
         {/* Bottom Navigation */}
